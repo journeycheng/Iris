@@ -11,6 +11,8 @@ iris = pd.read_csv("Iris.csv")
 
 iris.head()
 
+iris["Species"].value_counts()
+
 # e.g. 1
 iris.plot(kind="scatter",x="SepalLengthCm",y="SepalWidthCm")
 
@@ -54,5 +56,17 @@ parallel_coordinates(iris.drop("Id", axis=1), "Species")
 # e.g. 13
 from pandas.tools.plotting import radviz
 radviz(iris.drop("Id", axis=1), "Species")
+
+sns.distplot(a=iris_df["SepalLengthCm"], rug=True)
+sns.FacetGrid(iris_df, hue="Species", size=6).map(sns.kdeplot, "PetalLengthCm").add_legend()
+sns.plt.show()
+
+sns.factorplot(x='SepalLengthCm', y='SepalWidthCm', data=iris_df, hue='Species')
+sns.factorplot(x='SepalLengthCm', y='PetalLengthCm', data=iris_df, hue='Species')
+sns.factorplot(x='PetalLengthCm', y='SepalWidthCm', data=iris_df, hue='Species')
+sns.factorplot(x='PetalLengthCm', y='PetalWidthCm', data=iris_df, hue='Species')
+
+sns.jointplot(x='SepalLengthCm', y='SepalWidthCm', data=iris_df, size=5, kind='scatter')
+sns.plt.show()
 
 plt.show()
