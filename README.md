@@ -75,6 +75,14 @@ Iris-virginica     50
 Name: Species, dtype: int64
 ```
 ## 3 数据可视化
+- SePalLengthCm直方图
+```python
+sns.distplot(a=iris_df["SepalLengthCm"], rug=True)
+sns.FacetGrid(iris_df, hue="Species", size=6).map(sns.kdeplot, "PetalLengthCm").add_legend()
+sns.plt.show()
+```
+![](raw/figure_16.png?raw=true)
+
 - 所有样本的萼片长度和萼片宽度的散点图
 ```python
 iris_df.plot(kind="scatter",x="SepalLengthCm",y="SepalWidthCm")
@@ -178,6 +186,19 @@ plt.show()
 ```
 ![](raw/figure_13.png?raw=true)
 
+- 还不知道叫什么图
+```python
+sns.factorplot(x='SepalLengthCm', y='SepalWidthCm', data=iris_df, hue='Species')
+sns.factorplot(x='SepalLengthCm', y='PetalLengthCm', data=iris_df, hue='Species')
+sns.factorplot(x='PetalLengthCm', y='SepalWidthCm', data=iris_df, hue='Species')
+sns.factorplot(x='PetalLengthCm', y='PetalWidthCm', data=iris_df, hue='Species')
+sns.plt.show()
+```
+![](raw/figure_18.png?raw=true)
+![](raw/figure_19.png?raw=true)
+![](raw/figure_20.png?raw=true)
+![](raw/figure_21.png?raw=true)
+
 ## 4 数据清洗
 
 - 删除Id列，对分析无影响
@@ -218,7 +239,7 @@ y_pred = logreg.predict(iris_test_x)
 ```python
 print metrics.accuracy_score(iris_test_y, y_pred)
 ```
-0.888888888889
+测试集的正确率为0.888888888889
 
 ### 5.2 K近邻 KNeighbors
 ```python
@@ -245,7 +266,7 @@ y_pred = knn.predict(iris_test_x)
 ```python
 print metrics.accuracy_score(iris_test_y, y_pred)
 ```
-1.0
+测试集的正确率为1.0
 
 ### 5.3 主成分分析 PCA
 - PCA能对数据集降维，比如将原始数据的4维减少到2维
@@ -278,4 +299,4 @@ y_pred = kmeans.predict(X2d_test)
 
 print metrics.accuracy_score(y_test, y_pred)
 ```
-0.288888888889
+测试集的正确率只有0.288888888889
