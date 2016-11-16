@@ -222,5 +222,18 @@ print metrics.accuracy_score(iris_test_y, y_pred)
 
 ### 5.2 K近邻 KNeighbors
 ```python
-```
+k_range = list(range(1, 26))
+scores = []
+for k in k_range:
+	knn = KNeighborsClassifier(n_neighbors = k)
+	knn.fit(iris_train_x, iris_train_y)
+	y_pred = knn.predict(iris_test_x)
+	scores.append(metrics.accuracy_score(iris_test_y, y_pred))
 
+plt.plot(k_range, scores)
+plt.xlabel('Value of K for KNN')
+plt.ylabel('Testing Accuracy')
+plt.show()
+```
+![](raw/figure_14.png?raw=true)
+从图中可以看出有多个k值正确率能到1.
