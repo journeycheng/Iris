@@ -236,4 +236,21 @@ plt.ylabel('Testing Accuracy')
 plt.show()
 ```
 ![](raw/figure_14.png?raw=true)
-从图中可以看出有多个k值正确率能到1.
+从图中可以看出有多个k值正确率能到1.选取一个正确率高的k值：
+```python
+knn = KNeighborsClassifier(n_neighbors = 5)
+knn.fit(iris_train_x, iris_train_y)
+y_pred = knn.predict(iris_test_x)
+```
+```python
+print metrics.accuracy_score(iris_test_y, y_pred)
+```
+1.0
+
+### 5.3 主成分分析 PCA
+PCA能对数据集降维，比如将原始数据的4维减少到2维
+```python
+pca = PCA(n_components=2)
+pca.fit(iris_train_x)
+X2d_train = pca.transform(iris_train_x)
+```
