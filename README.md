@@ -203,6 +203,24 @@ iris_test_y = iris_test['Species']
 iris_test_x = iris_test.drop('Species', axis = 1)
 
 # 可以查看train和test
-print iris_train_x.shape, iris_test_x.shape
+print iris_train_x.shape, iris_test_x.shape  #(105, 4) (45, 4)
+```
+## 5 机器学习
+
+### 5.1 逻辑回归 LogisticRegression
+```python
+logreg = LogisticRegression()
+# train the model on the training set
+logreg.fit(iris_train_x, iris_train_y)
+# make predictions on the testing set
+y_pred = logreg.predict(iris_test_x)
+```
+```python
+print metrics.accuracy_score(iris_test_y, y_pred)
+```
+0.888888888889
+
+### 5.2 K近邻 KNeighbors
+```python
 ```
 
