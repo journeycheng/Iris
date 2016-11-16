@@ -187,8 +187,8 @@ iris_df = iris_df.drop('Id', axis = 1)
 - 把Species列的值修改为对应的数字
 ```python
 iris_df.loc[iris_df['Species'] == 'Iris-setosa', 'Species'] = 0
-iris_df.loc[iris_df['Species'] == 'Iris-versicolor', 'Species'] = 0
-iris_df.loc[iris_df['Species'] == 'Iris-virginica', 'Species'] = 0
+iris_df.loc[iris_df['Species'] == 'Iris-versicolor', 'Species'] = 1
+iris_df.loc[iris_df['Species'] == 'Iris-virginica', 'Species'] = 2
 
 # 将object类型转换为int类型
 iris_df['Species'] = iris_df['Species'].astype('int')
@@ -248,9 +248,30 @@ print metrics.accuracy_score(iris_test_y, y_pred)
 1.0
 
 ### 5.3 主成分分析 PCA
-PCA能对数据集降维，比如将原始数据的4维减少到2维
+- PCA能对数据集降维，比如将原始数据的4维减少到2维
 ```python
 pca = PCA(n_components=2)
 pca.fit(iris_train_x)
 X2d_train = pca.transform(iris_train_x)
+```
+- 降维之后原有信息的保留率在99.99%
+```python
+print pca.explained_variance_ratio_, sum(pca.explained_variance_ratio_)
+[  9.99393362e-01   4.62006759e-04] 0.999855368297
+```
+
+- 可以看看减少到2维以后的数据分布
+```python
+plt.scatter(X2d_train[:, 0], X2d_train[:, 1], c = iris_train_y)
+plt.show()
+```
+![](raw/figure_15.png?raw=true)
+
+- 降维之后使用KMean算法分析
+```
+kmeans = KMeans(n_clusters=3)
+kmeans = kmeans.fit(X2d_train)
+y_pred = kmeans.predict(X2d_test)
+
+print metrics.accuracy_score(iris_test_y, y_pred)
 ```
