@@ -8,6 +8,12 @@
 - 3 数据可视化
 - 4 数据清洗
 - 5 机器学习
+   - Logistic Regression
+   - KNeighbors
+   - PCA and KMeans
+   - SVM
+   - DecisionTree
+
 
 ## 1 导入相关库
 
@@ -268,7 +274,7 @@ print metrics.accuracy_score(iris_test_y, y_pred)
 ```
 测试集的正确率为1.0
 
-### 5.3 主成分分析 PCA
+### 5.3 PCA和KMeans
 - PCA能对数据集降维，比如将原始数据的4维减少到2维
 ```python
 iris_x = iris_df.drop('Species', axis = 1)
@@ -300,3 +306,24 @@ y_pred = kmeans.predict(X2d_test)
 print metrics.accuracy_score(y_test, y_pred)
 ```
 测试集的正确率只有0.288888888889
+
+### 5.4 SVM
+```python
+from sklearn.svm import SVC
+svm_classifier = SVC()
+svm_classifier.fit(iris_train_x, iris_train_y)
+y_pred = svm_classifier.predict(iris_test_x)
+print metrics.accuracy_score(y_test, y_pred)
+```
+测试集的正确率为0.977777777778
+
+### 5.4 DecisionTree
+```python
+from sklearn.tree import DecisionTreeClassifier
+tree_classifier = DecisionTreeClassifier()
+tree_classifier.fit(iris_train_x, iris_train_y)
+y_pred = tree_classifier.predict(iris_test_x)
+print metrics.accuracy_score(y_test, y_pred)
+```
+测试集的正确率为0.977777777778
+
