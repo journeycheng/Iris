@@ -8,6 +8,8 @@ import seaborn as sns
 sns.set(style="white", color_codes=True)
 import matplotlib.pyplot as plt
 ```
+
+![](raw/1.png?raw=true)
 ```python
 iris = pd.read_csv("Iris.csv")
 iris.head()
