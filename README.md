@@ -250,9 +250,12 @@ print metrics.accuracy_score(iris_test_y, y_pred)
 ### 5.3 主成分分析 PCA
 - PCA能对数据集降维，比如将原始数据的4维减少到2维
 ```python
+iris_x = iris_df.drop('Species', axis = 1)
+iris_y = iris_df['Species']
 pca = PCA(n_components=2)
-pca.fit(iris_train_x)
-X2d_train = pca.transform(iris_train_x)
+pca.fit(iris_x)
+X2d = pca.transform(iris_x)
+X2d_train, X2d_test, y_train, y_test = train_test_split(X2d, iris_y, test_size = .3, random_state = 1)
 ```
 - 降维之后原有信息的保留率在99.99%
 ```python
@@ -273,5 +276,6 @@ kmeans = KMeans(n_clusters=3)
 kmeans = kmeans.fit(X2d_train)
 y_pred = kmeans.predict(X2d_test)
 
-print metrics.accuracy_score(iris_test_y, y_pred)
+print metrics.accuracy_score(y_test, y_pred)
 ```
+0.288888888889
