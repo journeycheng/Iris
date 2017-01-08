@@ -29,7 +29,7 @@ from sklearn.cross_validation import train_test_split
 from sklearn import svm, neighbors
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-from sklearn.liner_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
 ```
